@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function_component</title>
+</head>
+<body>
+     <!--準備好一個容器-->
+     <div id="test"></div>
+     <!--引入react 核心庫-->
+     <script type="text/javascript" src="../js/react.min.js"></script>
+     <!-- 引入react-dom , 用於支持react 操作dom-->
+     <script type="text/javascript" src="../js/react-dom.min.js"></script>
+     <!-- 引入babel.js , 用於jsx 轉為js -->
+     <script type="text/javascript" src="../js/babel.min.js"></script>
+     <script type="text/babel">
+        //1. 創建類式組件
+        class MyComponent extends React.Component{
+            render(){
+                //render方法放在哪裡? -- MyComponent的prototype方法 , 供實例對象使用。
+                //render 中的this是誰? --MyComponent 的實例對象<=>MyCompoent組件實例對象。
+                console.log(`render 中的this : `,this);
+                return <h2>我是用類定義的組件【適用於複雜組件的定義】</h2>
+            }
+        }
+        //2. 渲染組件到頁面
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+        /*
+            執行了ReactDOM.render(<MyComponent/>.......之後，發生了甚麼?
+                1. React解析組件標籤，找到了MyConponent
+                2. 發現組件是類定義的，隨後new 出該類的實例，並通過該實例，調用到原型上的render方法。
+                3. 將render 返回的虛擬DOM轉為真實DOM，隨後呈現在頁面上。
+        */
+    </script>
+</body>
+</html>

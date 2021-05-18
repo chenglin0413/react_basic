@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>props_基本使用</title>
+
+</head>
+<body>
+     <!--準備好一個容器-->
+     <div id="test1"></div>
+     <div id="test2"></div>
+     <div id="test3"></div>
+     <!--引入react 核心庫-->
+     <script type="text/javascript" src="../js/react.min.js"></script>
+     <!-- 引入react-dom , 用於支持react 操作dom-->
+     <script type="text/javascript" src="../js/react-dom.min.js"></script>
+     <!-- 引入babel.js , 用於jsx 轉為js -->
+     <script type="text/javascript" src="../js/babel.min.js"></script>
+     <script type="text/babel">
+     // 創建組件
+      class Person extends React.Component{
+          render(){
+              const {name,age,sex} = this.props
+              return (
+                <ul>
+                    <li>姓名 : {name}</li>    
+                    <li>性別 : {sex}</li>    
+                    <li>年齡 : {age+1}</li>    
+                </ul>
+              )
+          }
+      }
+      // 渲染組件至頁面
+      ReactDOM.render(<Person name="jerry" sex="男士" age={19}/>,document.getElementById('test1'))
+      ReactDOM.render(<Person name="tom" sex="女士" age={18}/>,document.getElementById('test2'))
+      const p = {name:'老劉',sex:'女',age:30}
+      //   ReactDOM.render(<Person name="老劉" sex="男士" age="30"/>,document.getElementById('test3'))
+      ReactDOM.render(<Person {...p} />,document.getElementById('test3'))
+      </script>
+</body>
+</html>

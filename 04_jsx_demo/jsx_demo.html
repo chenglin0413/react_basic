@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx_demo</title>
+</head>
+<body>
+    <!--準備好一個容器-->
+    <div id="test"></div>
+     <!--引入react 核心庫-->
+     <script type="text/javascript" src="../js/react.min.js"></script>
+     <!-- 引入react-dom , 用於支持react 操作dom-->
+     <script type="text/javascript" src="../js/react-dom.min.js"></script>
+     <!-- 引入babel.js , 用於jsx 轉為js -->
+     <script type="text/javascript" src="../js/babel.min.js"></script>
+
+
+     <script type="text/babel">
+        /*
+            注意區分【JS語句(代碼)】與【js表達式】
+            1. 表達式: 一個表達式會產生一個值，可放置於任何需要值的地方。
+                下面這些都是表達式:
+                (1) a
+                (2) a+b
+                (3) demo(1)
+                (4) arr.map(1)
+                (5) function test() {}
+            2. 語句(代碼):
+                下面這些都是語句(代碼):
+                (1) if(){}
+                (2) for(){}
+                (3) switch(){case:xxxx}
+             
+        */
+        //模擬一些數據
+        const data = ['Angular','React','Vue']
+        //1. 創建前端框架列表
+        const VDOM = (
+            <div>
+                <h1>前端JS框架列表</h1>    
+                <ul>
+                    {
+                        data.map((item,index)=>{
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        )
+        //2. 渲染虛擬DOM至前端
+        ReactDOM.render(VDOM,document.getElementById('test'))
+     </script>
+</body>
+</html>

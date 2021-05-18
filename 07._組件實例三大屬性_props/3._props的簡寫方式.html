@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>props_簡寫方式</title>
+
+  </head>
+  <body>
+    <!--引入react 核心庫-->
+    <script type="text/javascript" src="../js/react.min.js"></script>
+    <!-- 引入react-dom , 用於支持react 操作dom-->
+    <script type="text/javascript" src="../js/react-dom.min.js"></script>
+    <!-- 引入babel.js , 用於jsx 轉為js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入 prop-type . 用於對組件標籤屬性進行限制-->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <!--準備好一個容器-->
+     <div id="test1"></div>
+     <div id="test2"></div>
+     <div id="test3"></div>
+     <script type="text/babel">
+    
+     // 創建組件
+     
+      class Person extends React.Component{
+        //構造器是否接收props，是否傳遞給super,取決於是否希望在構造器中通過this訪問props。
+        constructor(props){
+          super(props)
+          console.log('constructor',this.props);
+        }
+        // 對標籤屬性進行類型、必要性的限制(未生效)
+        static propTypes = {
+              name: PropTypes.string.isRequired,//限制{name}必傳,且為字符串。
+              sex: PropTypes.string,
+              age: PropTypes.number,
+        }
+        //指定默認標籤屬性值
+        static defaultProps = {
+              sex: '男',//默認值設定為男
+              age: 18,
+        }
+          render(){
+              const {name,age,sex} = this.props
+              //props是 read only的
+              return (
+                <ul>
+                    <li>姓名 : {name}</li>    
+                    <li>性別 : {sex}</li>    
+                    <li>年齡 : {age+1}</li>    
+                </ul>
+              )
+          }
+      }
+
+      
+      // 渲染組件至頁面
+      ReactDOM.render(<Person name="jerry" sex="男士" age={19}/>,document.getElementById('test1'))
+      // ReactDOM.render(<Person name="tom" sex="女士" />,document.getElementById('test2'))
+      // const p = {name:"老劉",sex:'女',age:30}
+      // //   ReactDOM.render(<Person name="老劉" sex="男士" age="30"/>,document.getElementById('test3'))
+      // ReactDOM.render(<Person {...p} />,document.getElementById('test3'))
+      </script>
+</body>
+</html>

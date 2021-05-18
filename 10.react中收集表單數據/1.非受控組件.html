@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>非受控組件.html</title>
+
+  </head>
+  <body>
+    <!--引入react 核心庫-->
+    <script type="text/javascript" src="../js/react.min.js"></script>
+    <!-- 引入react-dom , 用於支持react 操作dom-->
+    <script type="text/javascript" src="../js/react-dom.min.js"></script>
+    <!-- 引入babel.js , 用於jsx 轉為js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!--準備好一個容器-->
+     <div id="test"></div>
+     <script type="text/babel">
+     // 創建組件
+     class Login extends React.Component{
+        handSubmit = (event)=>{
+            event.preventDefault()//阻止表單提交。
+            const {username,password} = this
+            alert(`你輸入的用帳號是:${username.value},你輸入的密碼是${password.value}`);
+        }
+        render(){
+            return(
+                <form onSubmit={this.handSubmit}>
+                    帳號: <input ref={c =>(this.username)=c} type="text" name="username"/>
+                    密碼: <input ref={c =>(this.password)=c} type="password" name="password"/>
+                    <button>登入</button>
+                </form>
+            )
+        }
+     }
+     //渲染組件
+     ReactDOM.render(<Login/>,document.getElementById('test'))
+      </script>
+</body>
+</html>

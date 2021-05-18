@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        class Person{
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+            speak(){
+                //speak方法放在哪裡? -- 類的prototype方法 , 供實例對象使用。
+                //通過Person 實例調用speak時，speak中的this就是Person實例
+                console.log(this)
+            }
+        }
+
+        const p1 = new Person('tom',18)
+        p1.speak()//通過實例調用speak方法
+        const x = p1.speak
+        x()
+        //類內的this調用使用嚴格模式。
+    </script>
+</body>
+</html>

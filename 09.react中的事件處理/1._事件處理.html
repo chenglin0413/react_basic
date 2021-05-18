@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>事件處理.html</title>
+
+  </head>
+  <body>
+    <!--引入react 核心庫-->
+    <script type="text/javascript" src="../js/react.min.js"></script>
+    <!-- 引入react-dom , 用於支持react 操作dom-->
+    <script type="text/javascript" src="../js/react-dom.min.js"></script>
+    <!-- 引入babel.js , 用於jsx 轉為js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!--準備好一個容器-->
+     <div id="test"></div>
+     <script type="text/babel">
+     // 創建組件
+     class Demo extends React.Component{
+        //創建Ref容器
+        myRef  = React.createRef()
+        myRef2  = React.createRef()
+         //展示左側輸入框數據
+        showData = ()=>{
+            alert(this.myRef.current.value);
+        }
+         //展示右側輸入框數據
+        showData2 = (event)=>{
+            alert(event.target.value);
+        }
+        render(){
+            return (
+                <div>
+                    <input ref={this.myRef} type="text" placeholder="點擊顯示數據"/>&nbsp;
+                    <button  onClick={this.showData}>點我提示</button>&nbsp;
+                    <input onBlur={this.showData2} type="text" placeholder="點擊顯示數據"/>&nbsp;
+                </div>
+            )
+        }
+     }
+
+     ReactDOM.render(<Demo/>,document.getElementById('test'))
+      </script>
+</body>
+</html>

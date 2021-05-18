@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class_basic</title>
+</head>
+<body>
+    <script type="text/javascript">
+    /*
+        1. 類中的構造器，構造器不是必要寫，要對實例進行一些初始化的動作，如添加指定屬性時才寫。
+        2. 如果A類繼承了B類，且A類中寫了構造器，則A類構造器中的super是必須要調用的。
+        3. 類中定義的方法，都是放在了類的原型對象中，供實例去使用。
+    */
+        class Person {
+                //構造器方法
+                constructor(name, age) {
+                    //構造器中的this是誰? -- 類的實例對象
+                    this.name = name
+                    this.age = age
+                }
+                //一般方法
+                speak() {
+                    //speak方法放在哪裡? -- 類的prototype方法 , 供實例對象使用。
+                    //通過Pesron 實例調用speak時，speak中的this就是Person實例
+                    console.log(`我叫${this.name},我年齡是${this.age}`);
+                }
+            }
+        //創建一個student 類，繼承Person
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age)
+                this.grade = grade
+            }
+            speak(){
+                console.log(`我叫${this.name},我年齡是${this.age},我讀的是${this.grade}年級`);
+            }
+            study(){
+                //study方法放在哪裡? -- 類的prototype方法 , 供實例對象使用。
+                //通過Student 實例調用study時，study中的this就是Student實例
+                console.log('我很努力的學習');
+            }
+        }
+
+        class Car {
+            constructor(name,price){
+                this.name = name
+                this.price = price
+                // this.wheel = 4 
+            }
+            //類裡面可以寫賦值語句,如下代碼的含意是:給Car的實例對象添加一個屬性,名為a, 值為1
+            a = 1
+            wheel = 4
+        }
+        const c1 = new Car('賓士c63',199)
+        const c2 = new Car('BMW',299)
+        console.log(c1);
+        console.log(c2);
+    </script>
+    
+</body>
+</html>

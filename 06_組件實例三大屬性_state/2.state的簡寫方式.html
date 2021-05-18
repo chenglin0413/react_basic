@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state</title>
+</head>
+<body>
+     <!--準備好一個容器-->
+     <div id="test"></div>
+     <!--引入react 核心庫-->
+     <script type="text/javascript" src="../js/react.min.js"></script>
+     <!-- 引入react-dom , 用於支持react 操作dom-->
+     <script type="text/javascript" src="../js/react-dom.min.js"></script>
+     <!-- 引入babel.js , 用於jsx 轉為js -->
+     <script type="text/javascript" src="../js/babel.min.js"></script>
+     <script type="text/babel">
+     //1. 創建組件 
+     class Weather extends React.Component{
+         //初始化狀態
+        state = {isHot:true,wind:'微風'}
+        render(){
+            const {isHot,wind} = this.state
+            return <h1 onClick={this.changeWeather}>今天天氣很{isHot?'炎熱':'涼爽'},{wind}</h1>
+        }
+        //自定義方法----要用賦值語句的形式加上箭頭函數(()=>)
+        changeWeather =()=>{
+            const isHot = this.state.isHot
+            this.setState({isHot:!isHot})
+        }
+     }
+     //2. 渲染組件至頁面
+     ReactDOM.render(<Weather/>,document.getElementById('test'))
+    
+  
+     </script>
+    
+</body>
+</html>

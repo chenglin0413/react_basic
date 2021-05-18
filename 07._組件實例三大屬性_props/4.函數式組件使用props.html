@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>函數式組件使用props</title>
+
+  </head>
+  <body>
+    <!--引入react 核心庫-->
+    <script type="text/javascript" src="../js/react.min.js"></script>
+    <!-- 引入react-dom , 用於支持react 操作dom-->
+    <script type="text/javascript" src="../js/react-dom.min.js"></script>
+    <!-- 引入babel.js , 用於jsx 轉為js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入 prop-type . 用於對組件標籤屬性進行限制-->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <!--準備好一個容器-->
+     <div id="test1"></div>
+     <div id="test2"></div>
+     <div id="test3"></div>
+     <script type="text/babel">
+    
+     // 創建組件      
+      function Person (props){
+        console.log(props)
+        const {name,sex,age}=props
+        return(
+                <ul>
+                    <li>姓名 : {name}</li>    
+                    <li>性別 : {sex}</li>    
+                    <li>年齡 : {age}</li>    
+                </ul>
+              )
+      }
+      Person.propTypes = {
+              name: PropTypes.string.isRequired,//限制{name}必傳,且為字符串。
+              sex: PropTypes.string,
+              age: PropTypes.number,
+      }
+      Person.defaultProps = {
+              sex: '男',//默認值設定為男
+              age: 18,
+      }
+      // 渲染組件至頁面
+      ReactDOM.render(<Person name="jerry" sex="女士" age={19}/>,document.getElementById('test1'))
+      // ReactDOM.render(<Person name="tom" sex="女士" />,document.getElementById('test2'))
+      // const p = {name:"老劉",sex:'女',age:30}
+      // //   ReactDOM.render(<Person name="老劉" sex="男士" age="30"/>,document.getElementById('test3'))
+      // ReactDOM.render(<Person {...p} />,document.getElementById('test3'))
+      </script>
+</body>
+</html>

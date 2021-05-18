@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function_component</title>
+</head>
+<body>
+     <!--準備好一個容器-->
+     <div id="test"></div>
+     <!--引入react 核心庫-->
+     <script type="text/javascript" src="../js/react.min.js"></script>
+     <!-- 引入react-dom , 用於支持react 操作dom-->
+     <script type="text/javascript" src="../js/react-dom.min.js"></script>
+     <!-- 引入babel.js , 用於jsx 轉為js -->
+     <script type="text/javascript" src="../js/babel.min.js"></script>
+     <script type="text/babel">
+        //1. 創建函數式組件
+        function MyComponent(){
+            console.log(this) ;//此處的this 是undefined , 因為Babel編譯後開啟了嚴格模式
+            return <h2>我是用函數定義的組件【適用於簡單組件的定義】</h2>
+        }
+        //2. 渲染組件到頁面
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+        /*
+            執行了ReactDOM.render(<MyComponent/>.......之後，發生了甚麼?
+                1. React解析組件標籤，找到了MyComponent
+                2. 發現組件是函數定義的，隨後調用該函數，將返回的虛擬DOM轉換成真實DOM，隨後呈現在頁面中。
+        */
+    </script>
+</body>
+</html>
